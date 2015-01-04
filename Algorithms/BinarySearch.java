@@ -1,6 +1,6 @@
 package test4;
 
-public class BinarySearch2 {
+public class BinarySearch {
 	
 	static int binarySearch(int[] A, int N) {
 		int low = 0;
