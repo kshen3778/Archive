@@ -1,0 +1,130 @@
+Collections
+-list
+-set
+-map
+
+Java 1.5 uses generic type for collections
+
+1. List Interface
+	a) 3 implemented class: ArrayList, LinkedList, Vector
+	
+	To create a list:
+	
+	DON'T DO THIS:
+	List<String> list = = new List<String>(); //this is wrong way
+	List is an interface, not a class and you can't instantiate an interface.
+	
+	DO THIS:
+	Instantiate one of the implemented class.
+	List<String> list = new ArrayList<String>(); //creates arraylist(which implements List) 
+	list cannot call methods in ArrayList,but can in List. list is a type List and can only use List stuffs and methods.
+	If you really need to call a method in ArrayList, you have to explicitly cast it.
+	((ArrayList<String>) list).method(); //note: dot has higher precedence than cast
+	
+	
+	ArrayList<String> list = new ArrayList<String>(); //pure arraylist
+	now, list can call all methods in ArrayList.
+	
+	You ABSOLUTELY CANNOT use list to call a method in LinkedList(even with casting). It's a different path in the inheritance tree.
+	
+    b) Since Generic type is used, therefore you can view List<String> the whole as a new data type. It means that the element
+    data type of the list has to be String(generic property of the List).
+    
+    c) How to sort a List?
+    There is Collections class that provides alot of static methods, including a sort() method.
+    Note: Collections don't use primitive datatypes like int, instead they use wrapper classes Integer and Double etc.
+    
+    d) When we use Iterator to traverse the List, it will be according to the order of the items added to the list.
+    
+    e) If we want to add objects to the list and want to do sorting:
+    You should use Comparable interface and have the Item class implement compareTo() method.
+    public class Student implements Comparable{
+    	
+    	int compareTo(Student s){
+    		//write code to compare
+    		//if a is this and a==b then return 0
+    		//if a > b then return positive number
+    		//if a < b then return negative number
+    	}
+    }
+    
+    Sorting an array of objects that implement compareTo():
+    Student[] st = new Student[20];
+    Arrays.sort(st);
+    
+    Another Interface for comparing objects is Comparator...
+    If you cannot write the class of the object by yourself you need to use Comparator.
+    the inteface looks something like thise:
+    public interface Comparable{
+    	int compare(Object firstobj, object secondobj);
+    }
+    
+    Write a class Comp and implement Comparator
+    and write code for compare.
+    
+    For example, like this:
+    public class Student{
+    	....
+    }
+    
+    public class Comp implements Comparator{
+    	int compare(Student a,Student b){
+    		...
+    	}
+    }
+    
+    Now, to sort the List of Student, you can do:
+    
+    Collections.sort(al,comp); //al is list and comp is object Comp
+    (the Comparator interface is a bit redundent)
+    
+2. Map Interface
+
+	There is Map Interface and two classes that implement it that you should know:
+	HashMap and TreeMap
+	
+	a) Map is always like <key, value> pair.
+	
+	b) You should know, in map, the key is not duplicated..if you insert an existing key
+	to a map, the previous value will be replaced(key must be unique).
+	
+	c) Map is not iterable(no iterator method). 
+	d) HashMap is not sorted. TreeMap has ways to provide natural order of the elements.
+	
+	Map for graphs/adjacency list:
+	
+	Map<Integer, LinkedList<Integer>> mp = new TreeMap<Integer, LinkedList<Integer>>();
+	
+	for(int i=0;i<10;i++){ //10 nodes in a graph
+		mp.put(i, new LinkedList<Integer>()); //index i is used as a key and is autoboxed to Integer
+	}
+	
+	If you want to add neighbors of 2, you can do it in this way:
+	
+	LinkedList<Integer> temp = mp.get(2);
+	temp.add(3); /add 3 to 2 if 3 is neighbor of 2 in the graph.
+	
+3. Set interface
+
+	The set interface is like a mathematical set in math
+	We can use it to do intersection of 2 sets and union of 2 sets, the 
+	result/new set will have no duplicates.
+	
+	Some set interface methods:
+	boolean addAll(Collection C); <-- union(pours all elements in and remove duplicates);
+	returns true when there are changes
+	
+	boolean retainAll(Collection c); <-- intersection
+	retains only the elements in this set that are contained in the Collection C
+	Returns true if changes to the set are made
+	
+	By the way, there are two classes that implement the Set interface: HashSet and TreeSet
+	
+	HashSets do not maintain the order, TreeSets maintains the normal order.
+	(order in HashSet is all messed up, there is no ascending order)
+	(TreeSet organizes it into ascending order)  
+	
+	
+    
+    
+    

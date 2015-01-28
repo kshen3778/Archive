@@ -1,0 +1,55 @@
+ Graph: A set of vertices (V) and a set of edges(E)
+	 Almost like a web of nodes and connectors/wires.
+	 The first data structure you can use to store graphs is: Adjacency Matrix(a 2D array)
+	   v1 v2 v3 v4
+	 v1 0 1  1  0 <--this means from v1 to v2 we have one edge/connection and from v1 to v3 we have one edge/connection
+	 v2 1 0  0  0 <--- like mentioned above, v2 and v1 are connected
+	 v3 ...
+	 v4 ...
+	 
+	 1.Indirect graph: a connection between v1 and v2 is the same as v2 and v1(the direction and starting point doesnt matter).
+	 2. Direct graph: one direction. v1 to v2 is not the same as v2 to v1
+	 3. Weighted graph: Assigning a value to the edge(v1 to v2 might have a length of 10 and v2 to v3, a length of 4).
+	 4. Unweighted graph: No assigned value for a path/connection. They are all the same abstractly.
+	 
+	 To store a weighted graph into an adjacency matrix simply change the 1 to the length.
+	 To store an direct graph into an adjacency matrix: if v1 connects to v2 put 1 but put 0 for v2 to v1.
+	 
+	 Degree of a vertex:
+	 For indirect graph it means how many edges connect to it.
+	 For direct graph:
+	 	The first theorum: The sum of the degree of a graph is an even number(cus one edge is connected to 2 vertices) # of edges x 2 = degree
+	 A path of a graph: If from v1 to v3 there is an edge so we can say there is a path. 
+	 If v1 - v3 - v2 are connected, then this is a path from v1 to v2 via v3.
+	 It is possible to have 2 nodes that are not connected to the rest of the web.
+	 
+	 It is possible to transform a problem into a graph and apply theorums to solve it.
+	 
+	 Given a graph(adjacency matrx), how do you determine if there is a path between two nodes.
+	 We have an algorithm: If we multiply the matrix together we get a path.
+	 So say we have a matrix A.
+	 it will be A x A = A^2(look up matrix-matrix multiplication).
+	 After we have multiplied the matrix we will get a matrix. 
+	 An element of > 1 corresponds with a path(two or more edges to get from a vertix to another)
+	 
+	 But this algorithm is no good, because matrix-matrix multiplication is computationally expensive,
+	 something on the order of O(n^3) which sucks. A matrix is also memory consuming to store(like storing 1000 vertices).
+	 
+	 Another data structure is the adjacency list:
+	 Connections are stored via a linked list.
+	 Each node in the linked list represents a neighbour of the vertex.
+	 v1 -> v2 - v4 <--v1 is connected to v2 and v1 is connected to v4 
+	 v2 -> v1 -> v4 -> v3
+	 v3 ...
+	 v4 ...
+	 To store a adjacency list:
+	 We can use Map(a vector or arraylist
+	 Ex:
+	 Map<Integer, ArrayList<Integer>> 
+	 
+	 In Graph.java we will program the graph data structures...
+	 
+	 
+	 
+	 
+	 

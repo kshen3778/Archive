@@ -1,0 +1,64 @@
+Binary Search Tree(BST)
+
+Arrays are bad at inserting and deletion
+LinkedLists are bad at traversing and search
+The BST is another data structure you can use for search.
+
+Most of the time, a Tree uses recursion definition:
+For example - Binary Tree:
+Given a tree, if the root has one,two, or no kids. It's left and right subtree are binary tree then its a binary tree.
+ 
+ In a BST:
+ x - root node
+ y - left node
+ z - right node
+ BST maintain that y < x < z
+ Note: BST is a type of binary tree where the y < x < z relation is maintained.
+ Example:
+ 		10
+ 	5		18
+  4	  6	  15  19
+  
+  Each subtree is a BST, so a BST contains more BST (recursion).
+  Key concepts to decide what data structure to us: insertion,deletion,search and traversing
+  
+	1. Instead of arranging data in a linear array, store it in a binary search tree.
+
+  Given a BST and you need to find a number n its easy.
+  Compare n with the root. Is it bigger? Smaller?
+  If bigger compare it to the right subtree. If smaller, compare to left subtree(RECURSION).
+  
+  The running time is O(height of the tree) which is close to O(logn).
+  
+  Search code structure:	
+  
+  search(Node root, int n){
+  	if(root == null) return false; //n doesnt exist in BST(you've gone out of bounds)
+  	if(root.value == n) return true; //n is in the BST
+  	
+  	if(root.value < n){
+  		return search(root.leftkid,n);
+  	}else{
+  		return search(root.rightkid,n);
+  	}
+  }
+  
+  Insert a node:
+  	If you want to insert a node.
+  	Check if there is an empty node insert it in(while maintaining y < x < Z)
+  	
+  Delete a node:
+  3 cases:
+  A leaf: just delete it. a leaf is at the bottom of the tree. just set the root of the leaf to null.
+  One kid node: Delete the node and promote the subnode and connect it with the node above.
+  Two kid node: Find minimum left node(a leaf) in the right tree and set it to the two kid node's position.
+  
+  BST has a disadvantage:
+  When the data is in ascending order alread, you aren't building a BST, you are building a LinkedList by default.
+  
+  There is a type of BST called AVL tree which maintains a balance between the two sides(left and right)
+  
+  Preorder traversal
+  Root-leftkid-rightkid
+  
+  
