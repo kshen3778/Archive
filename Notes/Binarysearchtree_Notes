@@ -61,4 +61,27 @@ Given a tree, if the root has one,two, or no kids. It's left and right subtree a
   Preorder traversal
   Root-leftkid-rightkid
   
+  Definition of Complete Binary tree: The tree is filled level by level with the leaves on the bottom level(bottom level can be partially filled in order from left to right)
+  
+  
+  You can store  BST in an array(instead of an abstract data type)
+  Store it in layers from left to right
+  So the above tree should be [10,5,18,4,6,15,19]
+  to access left kid's index: parent[index] x 2
+  to access right kid's index: parent[index] x 2 + 1
+  
+  To find the parent of a node:
+  From kid node n: floor(n/2) <-- round down 
+  
+  Tree Traversing in detail:
+  3 types:
+  1. In order
+  2. Pre order
+  3. Post order
+  4. By level
+  1,2, and 3 can be based on recursion
+  In order traversing is: Left kid -> Root -> Right kid
+  Pre Order: Root > left > right
+  Post order: Left > right > root
+  By Level is just looping through because it is already in array
   
